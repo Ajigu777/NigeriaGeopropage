@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NigeriaGeo Pro — Mobile Geospatial & Coordinate Transformation Suite</title>
+  <meta name="description" content="The premier offline-first mobile application and geodetic transformation suite for Nigerian surveyors, GIS analysts, and field engineers.">
+  <link rel="icon" type="image/png" href="assets/icon-new.png">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400;1,600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Light Orbs & Grid -->
+  <div class="ambient-glow orb-1" aria-hidden="true"></div>
+  <div class="ambient-glow orb-2" aria-hidden="true"></div>
+  <div class="ambient-glow orb-3" aria-hidden="true"></div>
+
+  <!-- Decorative Geodetic Grid Lines -->
+  <div class="meridians" aria-hidden="true">
+    <div class="meridian-line" style="left:12%"></div>
+    <div class="meridian-line" style="left:30%"></div>
+    <div class="meridian-line" style="left:50%"></div>
+    <div class="meridian-line" style="left:70%"></div>
+    <div class="meridian-line" style="left:88%"></div>
+    <div class="parallel-line" style="top:18%"></div>
+    <div class="parallel-line" style="top:42%"></div>
+    <div class="parallel-line" style="top:68%"></div>
+    <div class="parallel-line" style="top:88%"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════ -->
+  <header class="nav-wrapper">
+    <nav id="navbar">
+      <a href="#hero" class="nav-logo">
+        <div class="logo-badge">
+          <img src="assets/icon-new.png" alt="NigeriaGeo Pro Icon" class="nav-app-icon">
+        </div>
+        <div class="nav-logo-meta">
+          <span class="nav-logo-text">Nigeria<span>Geo</span> Pro</span>
+          <span class="nav-logo-sub">Geodetic Suite</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">Overview</a></li>
+        <li><a href="#features">Key Features</a></li>
+        <li><a href="#apk-download">Download APK</a></li>
+        <li><a href="#geodesy">EPSG:1061 Math</a></li>
+        <li><a href="#download">Resources</a></li>
+        <li><a href="#contact">Developer</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://www.mediafire.com/file/de1ov47qpu85xhw/NigeriaGeoPro.apk/file" target="_blank" rel="noopener noreferrer" class="btn-nav-primary apk-download-trigger" id="navApkBtn">
+          <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Get APK</span>
+          <span class="nav-count-badge" id="navCountBadge">0</span>
+        </a>
+        <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="toggleMenu()">Overview</a>
+    <a href="#features" onclick="toggleMenu()">Key Features</a>
+    <a href="#apk-download" onclick="toggleMenu()">Download Android APK</a>
+    <a href="#geodesy" onclick="toggleMenu()">EPSG:1061 Geodetic Math</a>
+    <a href="#download" onclick="toggleMenu()">User Manual & CSV Dataset</a>
+    <a href="#contact" onclick="toggleMenu()">Contact the Developer</a>
+    <a href="#feedback" onclick="toggleMenu()">Community Feedback</a>
+    <div class="mobile-menu-cta">
+      <a href="https://www.mediafire.com/file/de1ov47qpu85xhw/NigeriaGeoPro.apk/file" target="_blank" rel="noopener noreferrer" class="btn btn-gold apk-download-trigger" style="width:100%;justify-content:center;">
+        ⬇ Download Android APK (<span class="mobile-count-val">0</span>)
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       HERO SECTION
+  ════════════════════════════════════ -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+
+        <!-- Left Column: Copy & Value Proposition -->
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="eyebrow-pulse"></span>
+            <span class="eyebrow-text">Offline-First Mobile Suite · Nigeria Geodetic Belts</span>
+          </div>
+
+          <h1 class="hero-title">
+            Precision Positioning.<br>
+            <span class="gold-gradient-text">Engineered for Nigeria.</span><br>
+            100% Offline.
+          </h1>
+
+          <p class="hero-desc">
+            The mobile geospatial companion designed for licensed surveyors, GIS analysts, and field technicians. Transform coordinates between Nigerian local grid belts and global WGS84/UTM with certified <strong>EPSG:1061</strong> precision, manage cadastral boundaries via local SQLite, and visualize survey paths without cellular coverage.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="https://www.mediafire.com/file/de1ov47qpu85xhw/NigeriaGeoPro.apk/file" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-glow apk-download-trigger" id="heroApkBtn">
+              <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <div class="btn-text-block">
+                <span>Download Android APK</span>
+                <span class="btn-subtext">v1.0.2 · <span class="hero-counter-val">0</span> Downloads</span>
+              </div>
+            </a>
+
+            <a href="assets/nigeriaGeoManual.pdf" download class="btn btn-glass btn-sm">
+              <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              <div class="btn-text-block">
+                <span>User Manual</span>
+                <span class="btn-subtext">PDF · 476 KB</span>
+              </div>
+            </a>
+
+            <a href="assets/NigeriaGeoPro_BatchTest.csv" download class="btn btn-glass btn-sm">
+              <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg>
+              <div class="btn-text-block">
+                <span>Test CSV</span>
+                <span class="btn-subtext">40 Points</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Trust & Precision Indicators -->
+          <div class="hero-stats-strip">
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Offline Field Capable</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number"><span class="hero-counter-val">0</span></div>
+              <div class="stat-label">Field Downloads</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number">~3m</div>
+              <div class="stat-label">RMSE Certified Precision</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number">EPSG:1061</div>
+              <div class="stat-label">Molodensky Verified</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Ultra-Realistic Premium Smartphone Frame -->
+        <div class="hero-mockup-wrapper">
+          <div class="phone-chassis">
+            <!-- Dynamic Island / Speaker Notch -->
+            <div class="phone-top-island">
+              <div class="island-camera"></div>
+              <div class="island-sensor"></div>
+            </div>
+
+            <!-- Phone Screen Content -->
+            <div class="phone-screen">
+              <!-- Top App Status Bar -->
+              <div class="mock-status-bar">
+                <span class="mock-time">09:41</span>
+                <div class="mock-status-icons">
+                  <span class="mock-signal">●●●●</span>
+                  <span class="mock-battery">98%</span>
+                </div>
+              </div>
+
+              <!-- In-App Header -->
+              <div class="mock-app-nav">
+                <div class="mock-profile-card">
+                  <img src="assets/icon-new.png" alt="NigeriaGeo Pro Icon" class="mock-profile-pic">
+                  <div class="mock-profile-meta">
+                    <span class="mock-user-name">Field Surveyor</span>
+                    <span class="mock-sync-pill"><span class="pulse-dot"></span> SQLite Active</span>
+                  </div>
+                </div>
+                <div class="mock-badge-tag">Minna Belt</div>
+              </div>
+
+              <!-- Interactive Live Converter Card -->
+              <div class="mock-converter-card">
+                <div class="mock-card-top">
+                  <span class="mock-heading">COORDINATE CONVERTER</span>
+                  <span class="mock-live-pill">LIVE ENGINE</span>
+                </div>
+
+                <!-- CRS Selector Row -->
+                <div class="mock-crs-row">
+                  <div class="mock-crs-pill">
+                    <span class="mock-crs-tag">SOURCE</span>
+                    <span class="mock-crs-name" id="mockSrcLabel">Mid Belt (EPSG:26392)</span>
+                  </div>
+                  <button class="mock-swap-button" id="mockSwapBtn" title="Click to swap test coordinates" aria-label="Swap coordinates">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"/></svg>
+                  </button>
+                  <div class="mock-crs-pill">
+                    <span class="mock-crs-tag">TARGET</span>
+                    <span class="mock-crs-name" id="mockTgtLabel">WGS84 (EPSG:4326)</span>
+                  </div>
+                </div>
+
+                <!-- Input Coordinate Values -->
+                <div class="mock-val-grid">
+                  <div class="mock-val-box">
+                    <span class="mock-val-label">Easting (m)</span>
+                    <span class="mock-val-num" id="mockEastVal">584,347.216</span>
+                  </div>
+                  <div class="mock-val-box">
+                    <span class="mock-val-label">Northing (m)</span>
+                    <span class="mock-val-num" id="mockNorthVal">601,482.773</span>
+                  </div>
+                </div>
+
+                <!-- Transformation Indicator -->
+                <div class="mock-stream-indicator">
+                  <div class="stream-line"></div>
+                  <span class="stream-chip">EPSG:1061 TRANSFORMATION</span>
+                  <div class="stream-line"></div>
+                </div>
+
+                <!-- Result Coordinate Values -->
+                <div class="mock-res-grid">
+                  <div class="mock-res-box">
+                    <span class="mock-res-label">Longitude (°E)</span>
+                    <span class="mock-res-num" id="mockLonVal">7.53420000° E</span>
+                  </div>
+                  <div class="mock-res-box">
+                    <span class="mock-res-label">Latitude (°N)</span>
+                    <span class="mock-res-num" id="mockLatVal">9.07220000° N</span>
+                  </div>
+                </div>
+
+                <!-- Pipeline pill -->
+                <div class="mock-pipeline-tag">
+                  <code>TM Inverse → Molodensky Shift → WGS84</code>
+                </div>
+              </div>
+
+              <!-- Offline Project Card -->
+              <div class="mock-project-card">
+                <div class="project-card-icon">📁</div>
+                <div class="project-card-details">
+                  <div class="project-card-title">Phase 2 Cadastral Traverse</div>
+                  <div class="project-card-meta">4 Stations · Polylines Connected</div>
+                </div>
+                <div class="project-card-badge">Saved</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Ambient Badges around the Phone -->
+          <div class="floating-pill pill-top-left">
+            <span class="pill-icon">📡</span>
+            <div class="pill-info">
+              <span class="pill-title">MapLibre GPS Fix</span>
+              <span class="pill-sub">Abuja Central FCT · ±2.8m</span>
+            </div>
+          </div>
+
+          <div class="floating-pill pill-bottom-right">
+            <span class="pill-icon">⚡</span>
+            <div class="pill-info">
+              <span class="pill-title">Zero Network Latency</span>
+              <span class="pill-sub">100% Local Math Engine</span>
+            </div>
+          </div>
+
+          <div class="chassis-glow" aria-hidden="true"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Coordinate Ticker -->
+  <div class="coord-ticker" aria-hidden="true">
+    <div class="coord-ticker-inner">
+      <span class="coord-ticker-item">Abuja FCT <span>MB: E=584,347 N=601,482</span></span>
+      <span class="coord-ticker-item">Lagos Island <span>WB: E=108,579 N=271,369</span></span>
+      <span class="coord-ticker-item">Kano Central <span>MB: E=671,063 N=885,033</span></span>
+      <span class="coord-ticker-item">Port Harcourt <span>MB: E=520,948 N=282,476</span></span>
+      <span class="coord-ticker-item">Maiduguri <span>EB: E=1,181,254 N=866,127</span></span>
+      <span class="coord-ticker-item">Ibadan <span>WB: E=153,247 N=364,528</span></span>
+      <span class="coord-ticker-item">Enugu <span>EB: E=974,120 N=361,840</span></span>
+      <span class="coord-ticker-item">Calabar <span>EB: E=1,032,150 N=218,650</span></span>
+      <span class="coord-ticker-item">Jos Plateau <span>MB: E=704,847 N=648,334</span></span>
+      <span class="coord-ticker-item">Abuja FCT <span>MB: E=584,347 N=601,482</span></span>
+      <span class="coord-ticker-item">Lagos Island <span>WB: E=108,579 N=271,369</span></span>
+      <span class="coord-ticker-item">Kano Central <span>MB: E=671,063 N=885,033</span></span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       OVERVIEW & THE 150M PROBLEM
+  ════════════════════════════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head-center reveal">
+        <div class="section-tag">GEODETIC PROBLEM STATEMENT</div>
+        <h2 class="section-title">Bridging Nigeria's <span>150-Metre</span> Coordinate Gap</h2>
+        <p class="section-desc">
+          Official land registries and modern satellite positioning speak two conflicting languages. NigeriaGeo Pro brings them into mathematical harmony.
+        </p>
+      </div>
+
+      <div class="bento-overview-grid">
+        <!-- Main Explanation Card -->
+        <div class="bento-card bento-hero-span reveal reveal-delay-1">
+          <div class="bento-card-body">
+            <h3 class="bento-card-title">Two Parallel Address Systems for the Same Spot</h3>
+            <p class="bento-card-text">
+              In Nigeria, cadastral survey beacons, Certificates of Occupancy (C of O), and state land boundary plans are registered under the colonial-origin <strong class="gold-text">Minna Datum</strong> (Clarke 1880 ellipsoid). However, every handheld GPS rover, drone telemetry unit, smartphone, and satellite layer operates on <strong class="cyan-text">WGS84</strong>.
+            </p>
+            <p class="bento-card-text">
+              Because these two ellipsoidal references differ in physical center and orientation, coordinates representing the exact same survey beacon disagree by between <strong class="gold-text">100 and 200 metres</strong> on the ground. NigeriaGeo Pro implements the standardized <strong>EPSG:1061 Molodensky transformation parameters</strong> combined with Transverse Mercator projections to convert between them flawlessly.
+            </p>
+
+            <div class="dual-datum-container">
+              <div class="datum-badge-card minna-card">
+                <div class="datum-badge-header">
+                  <span class="datum-dot-gold"></span>
+                  <span class="datum-group-name">Minna Datum Group (Legacy & Cadastral)</span>
+                </div>
+                <div class="datum-chips">
+                  <span class="chip-item">Nigeria West Belt · EPSG:26391</span>
+                  <span class="chip-item">Nigeria Mid Belt · EPSG:26392</span>
+                  <span class="chip-item">Nigeria East Belt · EPSG:26393</span>
+                  <span class="chip-item">Minna Geographic · EPSG:4263</span>
+                </div>
+              </div>
+
+              <div class="datum-badge-card wgs-card">
+                <div class="datum-badge-header">
+                  <span class="datum-dot-blue"></span>
+                  <span class="datum-group-name">WGS84 Datum Group (GNSS & Satellite)</span>
+                </div>
+                <div class="datum-chips">
+                  <span class="chip-item">WGS84 Lat/Long · EPSG:4326</span>
+                  <span class="chip-item">UTM Zone 31N · EPSG:32631</span>
+                  <span class="chip-item">UTM Zone 32N · EPSG:32632</span>
+                  <span class="chip-item">Web Mercator · EPSG:3857</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Highlight Card 1 -->
+        <div class="bento-card bento-metric reveal reveal-delay-2">
+          <div class="metric-icon-wrap">📐</div>
+          <h4 class="metric-title">Three Belt Projections</h4>
+          <p class="metric-desc">
+            West (4°30'E), Mid (8°30'E), and East (12°30'E) Transverse Mercator zones with scale factor $k_0 = 0.99975$ to minimize territorial distortion.
+          </p>
+        </div>
+
+        <!-- Metric Highlight Card 2 -->
+        <div class="bento-card bento-metric reveal reveal-delay-3">
+          <div class="metric-icon-wrap">🌐</div>
+          <h4 class="metric-title">Universal Compatibility</h4>
+          <p class="metric-desc">
+            Direct conversion support for UTM Zones 31N & 32N, Web Mercator, and standard decimal degrees latitude and longitude.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       5 KEY FEATURES (BENTO GRID)
+  ════════════════════════════════════ -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head-center reveal">
+        <div class="section-tag">CAPABILITIES SUITE</div>
+        <h2 class="section-title">Built for the Demands of <span>Field Surveyors</span></h2>
+        <p class="section-desc">
+          Five specialized pillars engineered to handle everything from single-point beacon verification to full perimeter traverse computations.
+        </p>
+      </div>
+
+      <div class="features-bento-grid">
+
+        <!-- Pillar 1: Advanced Coordinate Converter (Large Span) -->
+        <div class="bento-feature-card bento-span-2 reveal reveal-delay-1">
+          <div class="feature-card-header">
+            <div class="feature-index">01</div>
+            <span class="feature-badge">CORE CONVERTER</span>
+          </div>
+          <h3 class="feature-heading">Advanced Real-Time Coordinate Converter</h3>
+          <p class="feature-summary">
+            Transform coordinates between any pair of supported CRS in sub-second time. Dynamic boundary validation verifies that Easting and Northing values fall strictly inside Nigerian territory before performing calculations, eliminating out-of-bounds conversion mistakes.
+          </p>
+          <div class="feature-highlights-grid">
+            <div class="highlight-item">
+              <span class="highlight-check">✓</span>
+              <span>Point-by-point live transformation with instant UI feedback</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-check">✓</span>
+              <span>Live bounds validator checking territorial extents for all 3 belts</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-check">✓</span>
+              <span>Sub-millimetre calculation precision with custom precision rounding</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-check">✓</span>
+              <span>One-tap formatted clipboard copying for instant field note recording</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 2: CSV Batch Processing -->
+        <div class="bento-feature-card reveal reveal-delay-2">
+          <div class="feature-card-header">
+            <div class="feature-index">02</div>
+            <span class="feature-badge">BATCH WORKFLOWS</span>
+          </div>
+          <h3 class="feature-heading">CSV Batch Processing</h3>
+          <p class="feature-summary">
+            Process entire survey traverses, cadastral layouts, and boundary loops at once. Upload CSV files from your Total Station or GPS collector and transform hundreds of coordinates concurrently.
+          </p>
+          <ul class="feature-bullet-list">
+            <li>Bulk upload with immediate schema validation</li>
+            <li>Simultaneous multi-coordinate execution</li>
+            <li>Direct CSV export ready for AutoCAD or QGIS</li>
+          </ul>
+          <div class="feature-bottom-cta">
+            <a href="assets/NigeriaGeoPro_BatchTest.csv" download class="dataset-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Get Sample Batch CSV (1.6 KB)
+            </a>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Offline SQLite Projects -->
+        <div class="bento-feature-card reveal reveal-delay-3">
+          <div class="feature-card-header">
+            <div class="feature-index">03</div>
+            <span class="feature-badge">100% OFFLINE</span>
+          </div>
+          <h3 class="feature-heading">Offline SQLite Project Management</h3>
+          <p class="feature-summary">
+            Operating in remote vegetation, riverine terrains, or locations with zero cellular coverage? NigeriaGeo Pro stores all project groups and points safely on-device with zero reliance on cloud connections.
+          </p>
+          <ul class="feature-bullet-list">
+            <li>Zero internet connection required — 100% offline</li>
+            <li>Organize survey points into designated project folders</li>
+            <li>Local SQLite database engine for instant reads/writes</li>
+            <li>Export project points directly to reports or clipboard</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 4: Interactive MapLibre Visualization -->
+        <div class="bento-feature-card bento-span-2 reveal reveal-delay-4">
+          <div class="feature-card-header">
+            <div class="feature-index">04</div>
+            <span class="feature-badge">MAPLIBRE GL</span>
+          </div>
+          <h3 class="feature-heading">Interactive MapLibre Vector Visualization & Polylines</h3>
+          <p class="feature-summary">
+            Powered by high-performance MapLibre GL for fluid 60fps interaction. Plot both active converter points and saved project beacons. NigeriaGeo Pro automatically renders dashed boundary polylines connecting sequential survey stations to visualize property parcels and road paths.
+          </p>
+          <div class="feature-highlights-grid">
+            <div class="highlight-item">
+              <span class="highlight-check">✓</span>
+              <span>Ultra-fast MapLibre vector tile rendering with MapTiler integration</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-check">✓</span>
+              <span>Automatic sequential polyline boundary generation between survey pins</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-check">✓</span>
+              <span>Integrated GNSS device tracking to center map on your real field location</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-check">✓</span>
+              <span>Visual coordinate preview pins before saving into project database</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 5: Profiles & Personalization -->
+        <div class="bento-feature-card reveal reveal-delay-5">
+          <div class="feature-card-header">
+            <div class="feature-index">05</div>
+            <span class="feature-badge">PERSONALIZED</span>
+          </div>
+          <h3 class="feature-heading">Onboarding & Preferences</h3>
+          <p class="feature-summary">
+            Tailor the application to your professional domain. NigeriaGeo Pro remembers your primary working belt and calculation precision across sessions.
+          </p>
+          <ul class="feature-bullet-list">
+            <li>Custom profiles for Surveyors, GIS Analysts, & Geologists</li>
+            <li>Persistent default belt configuration (West, Mid, East)</li>
+            <li>Configurable precision rounding (2 to 8 decimals)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       DEDICATED APK DOWNLOAD SECTION (WITH LIVE STAT COUNTER)
+  ═════════════════════════════════════ -->
+  <section id="apk-download">
+    <div class="container">
+      <div class="apk-flagship-card reveal">
+        <div class="apk-card-grid">
+
+          <!-- Left Details & Live Counter -->
+          <div class="apk-left-col">
+            <div class="apk-badge-row">
+              <span class="apk-platform-tag">
+                <svg class="android-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 0 0-.1521-.5676.416.416 0 0 0-.5676.1521l-2.0223 3.503C15.5902 8.414 13.8533 8.125 12 8.125s-3.5902.289-5.1368.8247L4.8409 5.4467a.4161.4161 0 0 0-.5677-.1521.4157.4157 0 0 0-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/></svg>
+                Android APK Package
+              </span>
+              <span class="live-counter-badge">
+                <span class="live-pulse-dot"></span>
+                <span>Live Download Tracker</span>
+              </span>
+            </div>
+
+            <h2 class="apk-main-title">
+              Download <span class="gold-gradient-text">NigeriaGeo Pro</span> for Android
+            </h2>
+
+            <p class="apk-main-desc">
+              Get the standalone, offline-ready Android APK directly to your field smartphone, tablet, or handheld data controller. Includes embedded SQLite engine, pre-loaded EPSG:1061 geodetic parameters, and offline boundary vector rendering.
+            </p>
+
+            <!-- BIG AUTOMATIC LIVE COUNTER BOX -->
+            <div class="live-counter-box">
+              <div class="counter-header">
+                <span class="counter-title">TOTAL FIELD SURVEY DOWNLOADS</span>
+                <span class="counter-live-tag">● REAL-TIME COUNTER</span>
+              </div>
+              <div class="counter-number-row">
+                <span class="counter-digit" id="apkCounterBig">0</span>
+                <span class="counter-unit">Surveyors & Engineers</span>
+              </div>
+              <div class="counter-footer">
+                <span class="counter-sparkle">⚡</span>
+                <span>Stat automatically increments with every verified APK download</span>
+              </div>
+            </div>
+
+            <!-- APK Action Button -->
+            <div class="apk-download-actions">
+              <a href="https://www.mediafire.com/file/de1ov47qpu85xhw/NigeriaGeoPro.apk/file" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-apk-flagship apk-download-trigger" id="mainApkBtn">
+                <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <div class="btn-text-content">
+                  <span class="apk-btn-label">Download APK Directly</span>
+                  <span class="apk-btn-sub">NigeriaGeoPro.apk · MediaFire Cloud Mirror</span>
+                </div>
+              </a>
+            </div>
+
+            <div class="apk-specs-pills">
+              <span class="spec-pill">Version: <strong>1.0.2 Stable</strong></span>
+              <span class="spec-pill">Size: <strong>136 MB</strong></span>
+              <span class="spec-pill">Android: <strong>7.0 (Nougat) to 15+</strong></span>
+              <span class="spec-pill">Arch: <strong>arm64-v8a / universal</strong></span>
+              <span class="spec-pill">Connectivity: <strong>100% Offline</strong></span>
+            </div>
+          </div>
+
+          <!-- Right Installation Steps -->
+          <div class="apk-right-col">
+            <div class="install-guide-card">
+              <div class="guide-card-header">
+                <span class="guide-tag">QUICK INSTALL GUIDE</span>
+                <h3 class="guide-title">How to Install in 3 Easy Steps</h3>
+              </div>
+
+              <div class="steps-flow">
+                <div class="guide-step-item">
+                  <div class="step-badge-num">1</div>
+                  <div class="step-info">
+                    <h4 class="step-title">Download the APK File</h4>
+                    <p class="step-text">
+                      Tap the gold <strong>Download APK</strong> button to open the MediaFire storage mirror, then tap Download to get <code>NigeriaGeoPro.apk</code> directly on your device.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="guide-step-item">
+                  <div class="step-badge-num">2</div>
+                  <div class="step-info">
+                    <h4 class="step-title">Allow Unknown Apps in Settings</h4>
+                    <p class="step-text">
+                      When prompted, tap <em>"Settings"</em> and switch on <em>"Allow from this source"</em> (standard security confirmation for direct APK installs outside the Play Store).
+                    </p>
+                  </div>
+                </div>
+
+                <div class="guide-step-item">
+                  <div class="step-badge-num">3</div>
+                  <div class="step-info">
+                    <h4 class="step-title">Launch & Survey Offline</h4>
+                    <p class="step-text">
+                      Tap <em>"Install"</em>, open NigeriaGeo Pro, and begin point-by-point coordinate conversions, CSV batch uploads, and boundary plotting immediately without internet.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="guide-security-note">
+                <span class="sec-icon">🔒</span>
+                <span>Verified SHA-256 integrity. Clean package with zero adware, tracking cookies, or external dependencies.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       EPSG:1061 GEODETIC MATHEMATICS
+  ═══════════════════════════════════ -->
+  <section id="geodesy">
+    <div class="container">
+      <div class="section-head-center reveal">
+        <div class="section-tag">MATHEMATICAL FOUNDATION</div>
+        <h2 class="section-title">Certified <span>EPSG:1061</span> Transformation Parameters</h2>
+        <p class="section-desc">
+          Formulas conform strictly to the EPSG Geodetic Parameter Registry and IOGP Guidance Note 7 Part 2.
+        </p>
+      </div>
+
+      <div class="geodesy-showcase-card reveal">
+        <div class="geodesy-math-grid">
+          <!-- Parameter Box 1 -->
+          <div class="math-card">
+            <div class="math-param-title">ΔX Offset</div>
+            <div class="math-param-val">−92.0 m</div>
+            <div class="math-param-meta">Minna → WGS84 X-axis translation</div>
+          </div>
+
+          <!-- Parameter Box 2 -->
+          <div class="math-card">
+            <div class="math-param-title">ΔY Offset</div>
+            <div class="math-param-val">−93.0 m</div>
+            <div class="math-param-meta">Minna → WGS84 Y-axis translation</div>
+          </div>
+
+          <!-- Parameter Box 3 -->
+          <div class="math-card">
+            <div class="math-param-title">ΔZ Offset</div>
+            <div class="math-param-val">+122.0 m</div>
+            <div class="math-param-meta">Minna → WGS84 Z-axis translation</div>
+          </div>
+        </div>
+
+        <!-- Structured, High-Legibility Ellipsoid Comparison Grid -->
+        <div class="ellipsoid-specs-container">
+          <div class="ellipsoid-section-header">
+            <span class="ellipsoid-badge">ELLIPSOID SPECIFICATION</span>
+            <p class="ellipsoid-subtitle">Certified reference ellipsoids and geodetic parameters utilized in NigeriaGeo Pro's Molodensky datum transformation engine.</p>
+          </div>
+
+          <div class="ellipsoid-cards-grid">
+            <!-- Clarke 1880 Card -->
+            <div class="ellipsoid-card">
+              <div class="ellipsoid-card-top">
+                <span class="ellipsoid-tag clarke-tag">LOCAL REFERENCE</span>
+                <h4 class="ellipsoid-name">Clarke 1880 (RGS)</h4>
+                <div class="ellipsoid-framework">Minna Datum · Nigerian Cadastral Grid</div>
+              </div>
+              <div class="ellipsoid-param-list">
+                <div class="ellipsoid-param-row">
+                  <span class="e-param-label">Semi-major axis (a)</span>
+                  <span class="e-param-val">6,378,249.145 m</span>
+                </div>
+                <div class="ellipsoid-param-row">
+                  <span class="e-param-label">Inverse flattening (1/f)</span>
+                  <span class="e-param-val">293.465</span>
+                </div>
+                <div class="ellipsoid-param-row">
+                  <span class="e-param-label">Primary Application</span>
+                  <span class="e-param-val">West, Mid & East Belts</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bridge Shift Indicator -->
+            <div class="ellipsoid-bridge-icon" title="Molodensky Transformation Bridge">
+              <div class="bridge-arrow">⇄</div>
+              <span class="bridge-label">Molodensky Shift</span>
+            </div>
+
+            <!-- WGS 84 Card -->
+            <div class="ellipsoid-card">
+              <div class="ellipsoid-card-top">
+                <span class="ellipsoid-tag wgs-tag">GLOBAL REFERENCE</span>
+                <h4 class="ellipsoid-name">WGS 84</h4>
+                <div class="ellipsoid-framework">EPSG:4326 · Global Satellite Positioning</div>
+              </div>
+              <div class="ellipsoid-param-list">
+                <div class="ellipsoid-param-row">
+                  <span class="e-param-label">Semi-major axis (a)</span>
+                  <span class="e-param-val">6,378,137.000 m</span>
+                </div>
+                <div class="ellipsoid-param-row">
+                  <span class="e-param-label">Inverse flattening (1/f)</span>
+                  <span class="e-param-val">298.257223563</span>
+                </div>
+                <div class="ellipsoid-param-row">
+                  <span class="e-param-label">Primary Application</span>
+                  <span class="e-param-val">GPS, Telemetry & MapLibre</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ellipsoid-footer-note">
+            <span class="note-icon">📐</span>
+            <span>Transforms ellipsoidal coordinates via rigorous IOGP Guidance Note 7 Part 2 formulas with 100% offline precision.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       DOWNLOADS & RESOURCE CENTER
+  ════════════════════════════════════ -->
+  <section id="download">
+    <div class="container">
+      <div class="section-head-center reveal">
+        <div class="section-tag">RESOURCE CENTER</div>
+        <h2 class="section-title">Official <span>User Documentation</span> & Test Data</h2>
+        <p class="section-desc">
+          Download the comprehensive User Manual PDF and sample CSV coordinates to verify your field workflows.
+        </p>
+      </div>
+
+      <div class="downloads-dual-grid">
+        <!-- Manual Card -->
+        <div class="download-box manual-box reveal reveal-delay-1">
+          <div class="box-top-tag">DOCUMENTATION</div>
+          <div class="box-main-icon">📄</div>
+          <h3 class="box-title">NigeriaGeo Pro User Manual</h3>
+          <p class="box-description">
+            A comprehensive reference manual written for practicing surveyors, university geodetic students, and GIS professionals. Covers geodetic concepts, coordinate belt boundaries, step-by-step conversion instructions, and troubleshooting.
+          </p>
+          <div class="box-checklist">
+            <div class="check-item"><span>✓</span> Full walkthrough of single-point & batch transformations</div>
+            <div class="check-item"><span>✓</span> Parameter definitions for West, Mid, and East Belts</div>
+            <div class="check-item"><span>✓</span> Offline SQLite project grouping & boundary guide</div>
+            <div class="check-item"><span>✓</span> Troubleshooting checklist for 9 common field coordinate issues</div>
+          </div>
+          <div class="box-action-row">
+            <a href="assets/nigeriaGeoManual.pdf" download class="btn btn-gold btn-compact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download PDF Manual (476 KB)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sample CSV Card -->
+        <div class="download-box dataset-box reveal reveal-delay-2">
+          <div class="box-top-tag">FIELD TEST DATA</div>
+          <div class="box-main-icon">📊</div>
+          <h3 class="box-title">Sample Batch Test CSV Dataset</h3>
+          <p class="box-description">
+            Includes 40 authentic Nigerian survey points distributed across the West, Mid, and East belts — formatted with standard headers and ready to upload directly into NigeriaGeo Pro's CSV Batch processor.
+          </p>
+          <div class="box-checklist">
+            <div class="check-item"><span>✓</span> 40 verified coordinates covering all three Nigerian belts</div>
+            <div class="check-item"><span>✓</span> Ideal for testing batch import accuracy and speed</div>
+            <div class="check-item"><span>✓</span> Includes sample points from Abuja, Lagos, Kano, & Port Harcourt</div>
+            <div class="check-item"><span>✓</span> Pre-formatted standard column headers</div>
+          </div>
+          <div class="box-action-row">
+            <a href="assets/NigeriaGeoPro_BatchTest.csv" download class="btn btn-glass btn-compact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download Batch Test CSV (1.6 KB)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       CONTACT THE DEVELOPER SECTION
+  ════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-section-wrap reveal">
+        <div class="contact-header">
+          <div class="contact-eyebrow">DIRECT COMMUNICATION</div>
+          <h2 class="contact-title">Contact the <span class="gold-gradient-text">Developer</span></h2>
+          <div class="social-name-preview" id="socialNamePreview">
+            <span class="preview-dot"></span>
+            <span class="preview-text" id="socialPreviewText">Hover over any icon to view channel</span>
+          </div>
+        </div>
+
+        <div class="social-icons-dock" id="socialDock">
+          <!-- Email -->
+          <a href="mailto:kafecodes@gmail.com" class="social-icon-btn icon-email" data-name="Email: kafecodes@gmail.com" data-color="#F87171" title="Email: kafecodes@gmail.com" aria-label="Email: kafecodes@gmail.com">
+            <span class="social-tooltip">Email</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/kafewo-ajiguabom-titus-9294b2334" target="_blank" rel="noopener noreferrer" class="social-icon-btn icon-linkedin" data-name="LinkedIn: Kafewo Ajiguabom Titus" data-color="#38BDF8" title="LinkedIn: kafewo-ajiguabom-titus" aria-label="LinkedIn Profile">
+            <span class="social-tooltip">LinkedIn</span>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          </a>
+
+          <!-- Portfolio -->
+          <a href="https://kafecodes.vercel.app/" target="_blank" rel="noopener noreferrer" class="social-icon-btn icon-portfolio" data-name="Portfolio: kafecodes.vercel.app" data-color="#E8B84B" title="Portfolio: kafecodes.vercel.app" aria-label="Developer Portfolio">
+            <span class="social-tooltip">Portfolio</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com/Ajigu777" target="_blank" rel="noopener noreferrer" class="social-icon-btn icon-github" data-name="GitHub: @Ajigu777" data-color="#FFFFFF" title="GitHub: Ajigu777" aria-label="GitHub Profile">
+            <span class="social-tooltip">GitHub</span>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+          </a>
+
+          <!-- X (Twitter) -->
+          <a href="https://x.com/Kafecode" target="_blank" rel="noopener noreferrer" class="social-icon-btn icon-x" data-name="X (Twitter): @Kafecode" data-color="#FFFFFF" title="X (Twitter): @Kafecode" aria-label="X (Twitter) Profile">
+            <span class="social-tooltip">X (Twitter)</span>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       COMMUNITY FEEDBACK
+  ════════════════════════════════════ -->
+  <section id="feedback">
+    <div class="container">
+      <div class="feedback-premium-card reveal">
+        <div class="feedback-badge">COMMUNITY COLLABORATION</div>
+        <h2 class="feedback-title">Help Shape the Future of <span class="gold-gradient-text">NigeriaGeo Pro</span></h2>
+        <p class="feedback-lead">
+          NigeriaGeo Pro is built for Nigeria's geospatial practitioners. Your observations from field projects directly influence upcoming enhancements such as DXF boundary exporting, customized local site calibration, and additional regional datum shifts.
+        </p>
+
+        <div class="feedback-tag-row">
+          <span class="f-pill"><span class="f-dot"></span> Report Field Findings</span>
+          <span class="f-pill"><span class="f-dot"></span> Request New File Formats</span>
+          <span class="f-pill"><span class="f-dot"></span> Suggest Projections</span>
+          <span class="f-pill"><span class="f-dot"></span> Share Your Survey Use Case</span>
+        </div>
+
+        <a href="https://forms.gle/Pofyir7xcbfBPivF6" target="_blank" rel="noopener" class="btn btn-gold btn-feedback">
+          <span>Share Your Field Feedback</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       PROFESSIONAL DISCLAIMER
+  ════════════════════════════════════ -->
+  <section id="disclaimer">
+    <div class="container">
+      <div class="disclaimer-premium-box reveal">
+        <div class="disclaimer-title-row">
+          <span class="disclaimer-shield">🛡️</span>
+          <span class="disclaimer-heading">Professional Geodetic Disclaimer</span>
+        </div>
+        <p class="disclaimer-copy">
+          NigeriaGeo Pro is developed for educational, engineering research, and professional geospatial assistance purposes. Transformation parameters are sourced from the EPSG Geodetic Parameter Registry (EPSG:1061) and formulas adhere to IOGP Guidance Note 7 Part 2. The application has not been formally certified by SURCON or any State Surveyor General's office. <strong style="color:rgba(255,255,255,0.92)">Surveyors and engineers are responsible for independently validating all coordinate outputs against known ground control benchmarks prior to submitting statutory cadastral boundary plans or high-precision construction layout surveys.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+  ════════════════════════════════════ -->
+  <footer class="footer-wrapper">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="footer-logo">
+            <img src="assets/icon-new.png" alt="NigeriaGeo Pro Icon" class="footer-logo-img">
+            <span class="footer-logo-title">Nigeria<span>Geo</span> Pro</span>
+          </div>
+          <p class="footer-tagline">
+            Offline Mobile Geospatial & Coordinate Transformation Suite engineered specifically for Nigerian geodetic systems.
+          </p>
+          <div class="footer-credit">
+            Engineered by <span>Kafewo Ajiguabom Titus</span> (Kafecodes)
+          </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-col-title">Navigation</div>
+          <ul class="footer-links-list">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">Overview</a></li>
+            <li><a href="#features">Key Features</a></li>
+            <li><a href="#apk-download">Download APK</a></li>
+            <li><a href="#geodesy">EPSG:1061 Parameters</a></li>
+            <li><a href="#download">Documentation</a></li>
+            <li><a href="#contact">Contact Developer</a></li>
+            <li><a href="#feedback">Feedback</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <div class="footer-col-title">Resources & Connect</div>
+          <ul class="footer-links-list">
+            <li><a href="https://www.mediafire.com/file/de1ov47qpu85xhw/NigeriaGeoPro.apk/file" target="_blank" rel="noopener noreferrer" class="apk-download-trigger">Download APK (MediaFire)</a></li>
+            <li><a href="assets/nigeriaGeoManual.pdf" download>User Manual (PDF)</a></li>
+            <li><a href="assets/NigeriaGeoPro_BatchTest.csv" download>Sample Batch CSV</a></li>
+            <li><a href="mailto:kafecodes@gmail.com">Email Developer</a></li>
+            <li><a href="https://kafecodes.vercel.app/" target="_blank" rel="noopener noreferrer">Portfolio</a></li>
+            <li><a href="https://forms.gle/Pofyir7xcbfBPivF6" target="_blank" rel="noopener">Feedback Form</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          © 2025–2026 NigeriaGeo Pro · Engineered by Kafewo Ajiguabom Titus (Kafecodes) · Parameters: EPSG:1061 · All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Toast for Download Feedback -->
+  <div id="downloadToast" class="download-toast" aria-live="polite">
+    <div class="toast-content">
+      <div class="toast-icon">🚀</div>
+      <div class="toast-text">
+        <div class="toast-title">Download Initiated!</div>
+        <div class="toast-sub" id="toastSub">Total Downloads updated to 1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SCRIPTS
+  ════════════════════════════════════ -->
+  <script src="script.js"></script>
+</body>
+</html>
